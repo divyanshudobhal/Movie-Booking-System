@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1700" height="1250" viewBox="0 0 1700 1250">
+<rect width="1700" height="1250" fill="white"/>
+<style>
+.title{font:700 28px Arial;fill:#222}.head{font:700 16px Arial;fill:#222}.msg{font:15px Arial;fill:#222}.ret{font:italic 14px Arial;fill:#444}.small{font:13px Arial;fill:#555}.life{stroke:#777;stroke-width:2;stroke-dasharray:7 7}.box{fill:#f4f4f4;stroke:#333;stroke-width:2}.act{fill:#d9e8ff;stroke:#333;stroke-width:1.5}.arrow{stroke:#333;stroke-width:2;fill:none}.return{stroke:#666;stroke-width:1.6;stroke-dasharray:6 5;fill:none}.create{stroke:#333;stroke-width:2;fill:none}.note{fill:#fff7d6;stroke:#c9ad45;stroke-width:1.5}
+</style>
+<text x="850" y="42" text-anchor="middle" class="title">Sequence Diagram — Book 1 Seat and Pay by UPI</text>
+<text x="850" y="70" text-anchor="middle" class="small">Successful payment path; a failed payment branches to releaseSeat() and FAILED status.</text>
+
+<!-- heads -->
+<g>
+<rect x="45" y="100" width="150" height="55" rx="4" class="box"/><text x="120" y="133" text-anchor="middle" class="head">Customer</text>
+<rect x="245" y="100" width="180" height="55" rx="4" class="box"/><text x="335" y="133" text-anchor="middle" class="head">BookingService</text>
+<rect x="475" y="100" width="150" height="55" rx="4" class="box"/><text x="550" y="133" text-anchor="middle" class="head">Show</text>
+<rect x="675" y="100" width="160" height="55" rx="4" class="box"/><text x="755" y="133" text-anchor="middle" class="head">ShowSeat</text>
+<rect x="885" y="100" width="180" height="55" rx="4" class="box"/><text x="975" y="133" text-anchor="middle" class="head">PriceCalculator</text>
+<rect x="1115" y="100" width="155" height="55" rx="4" class="box"/><text x="1192" y="125" text-anchor="middle" class="head">Payment</text><text x="1192" y="145" text-anchor="middle" class="small">«UPI»</text>
+<rect x="1320" y="100" width="150" height="55" rx="4" class="box"/><text x="1395" y="133" text-anchor="middle" class="head">Booking</text>
+<rect x="1520" y="100" width="150" height="55" rx="4" class="box"/><text x="1595" y="133" text-anchor="middle" class="head">TicketPrinter</text>
+</g>
+<!-- lifelines -->
+<g class="life">
+<line x1="120" y1="155" x2="120" y2="1160"/><line x1="335" y1="155" x2="335" y2="1160"/><line x1="550" y1="155" x2="550" y2="1160"/><line x1="755" y1="155" x2="755" y2="1160"/><line x1="975" y1="155" x2="975" y2="1160"/><line x1="1192" y1="155" x2="1192" y2="1160"/><line x1="1395" y1="155" x2="1395" y2="1160"/><line x1="1595" y1="155" x2="1595" y2="1160"/>
+</g>
+<!-- activation bars -->
+<rect x="325" y="215" width="20" height="700" class="act"/>
+<rect x="540" y="295" width="20" height="135" class="act"/>
+<rect x="745" y="350" width="20" height="70" class="act"/>
+<rect x="965" y="470" width="20" height="85" class="act"/>
+<rect x="1182" y="610" width="20" height="95" class="act"/>
+<rect x="1385" y="770" width="20" height="120" class="act"/>
+<rect x="1585" y="930" width="20" height="80" class="act"/>
+
+<!-- messages -->
+<line x1="120" y1="205" x2="325" y2="205" class="arrow"/><polygon points="325,205 313,199 313,211" fill="#333"/><text x="222" y="194" text-anchor="middle" class="msg">chooseShow(showId=1)</text>
+<line x1="345" y1="285" x2="540" y2="285" class="arrow"/><polygon points="540,285 528,279 528,291" fill="#333"/><text x="442" y="274" text-anchor="middle" class="msg">findShowSeat(3)</text>
+<line x1="560" y1="340" x2="745" y2="340" class="arrow"/><polygon points="745,340 733,334 733,346" fill="#333"/><text x="652" y="329" text-anchor="middle" class="msg">isAvailable()</text>
+<line x1="745" y1="390" x2="560" y2="390" class="return"/><polygon points="560,390 572,384 572,396" fill="#666"/><text x="652" y="378" text-anchor="middle" class="ret">true</text>
+<line x1="345" y1="445" x2="745" y2="445" class="arrow"/><polygon points="745,445 733,439 733,451" fill="#333"/><text x="545" y="434" text-anchor="middle" class="msg">bookSeat()</text>
+<line x1="345" y1="490" x2="965" y2="490" class="arrow"/><polygon points="965,490 953,484 953,496" fill="#333"/><text x="655" y="479" text-anchor="middle" class="msg">calculateTotal([seat3])</text>
+<line x1="965" y1="540" x2="345" y2="540" class="return"/><polygon points="345,540 357,534 357,546" fill="#666"/><text x="655" y="528" text-anchor="middle" class="ret">Rs.250</text>
+<line x1="120" y1="585" x2="325" y2="585" class="arrow"/><polygon points="325,585 313,579 313,591" fill="#333"/><text x="222" y="574" text-anchor="middle" class="msg">select UPI + enter UPI ID</text>
+<line x1="345" y1="625" x2="1182" y2="625" class="create"/><polygon points="1182,625 1170,619 1170,631" fill="#333"/><text x="760" y="614" text-anchor="middle" class="msg">«create» UpiPayment</text>
+<line x1="345" y1="675" x2="1182" y2="675" class="arrow"/><polygon points="1182,675 1170,669 1170,681" fill="#333"/><text x="760" y="664" text-anchor="middle" class="msg">pay(250)</text>
+<line x1="1182" y1="720" x2="345" y2="720" class="return"/><polygon points="345,720 357,714 357,726" fill="#666"/><text x="760" y="708" text-anchor="middle" class="ret">true</text>
+<line x1="345" y1="775" x2="1385" y2="775" class="create"/><polygon points="1385,775 1373,769 1373,781" fill="#333"/><text x="865" y="764" text-anchor="middle" class="msg">«create» Booking(customer, seat3, payment, 250)</text>
+<line x1="345" y1="825" x2="1385" y2="825" class="arrow"/><polygon points="1385,825 1373,819 1373,831" fill="#333"/><text x="865" y="814" text-anchor="middle" class="msg">confirm()</text>
+<line x1="1385" y1="880" x2="345" y2="880" class="return"/><polygon points="345,880 357,874 357,886" fill="#666"/><text x="865" y="868" text-anchor="middle" class="ret">CONFIRMED</text>
+<line x1="345" y1="935" x2="1585" y2="935" class="arrow"/><polygon points="1585,935 1573,929 1573,941" fill="#333"/><text x="965" y="924" text-anchor="middle" class="msg">printTicket(booking, show)</text>
+<line x1="1585" y1="995" x2="345" y2="995" class="return"/><polygon points="345,995 357,989 357,1001" fill="#666"/><text x="965" y="983" text-anchor="middle" class="ret">ticket printed</text>
+
+<!-- failed branch note -->
+<rect x="80" y="1050" width="1540" height="80" rx="6" class="note"/>
+<text x="100" y="1078" class="msg"><tspan font-weight="700">Failure branch:</tspan> if Payment.pay(total) returns false, BookingService calls releaseSeat() for every selected ShowSeat,</text>
+<text x="100" y="1102" class="msg">creates/marks the Booking as FAILED, and does not call confirm() or printTicket().</text>
+</svg>
